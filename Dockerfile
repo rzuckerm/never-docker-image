@@ -5,8 +5,9 @@ RUN apt-get update && \
     apt-get install -y git build-essential cmake bison flex libffi-dev && \
     mkdir -p /opt && \
     cd /opt && \
-    git clone https://github.com/never-lang/never.git -b v$(cat /tmp/NEVER_VERSION) && \
+    git clone https://github.com/never-lang/never.git -b master && \
     cd never && \
+    git reset --hard $(cat /tmp/NEVER_COMMIT_HASH) && \
     mkdir build && \
     cd build && \
     cmake .. && \
