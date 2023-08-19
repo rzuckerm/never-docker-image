@@ -15,5 +15,6 @@ RUN apt-get update && \
     cp never /usr/local/bin && \
     rm -rf /opt/never && \
     apt-get remove -y git build-essential cmake bison flex && \
+    apt-get autoremove -y && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
