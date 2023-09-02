@@ -1,4 +1,5 @@
 NEVER_VERSION := $(shell cat NEVER_VERSION)
+NEVER_DEPS := $(wildcard NEVER_*)
 DOCKER_TAG_PREFIX := rzuckerm/never:$(NEVER_VERSION)
 DOCKER_TAG_SUFFIX ?= -dev
 
@@ -14,7 +15,7 @@ help:
 
 .PHONY: build
 build: $(META_BUILD_TARGET)
-$(META_BUILD_TARGET): Dockerfile
+$(META_BUILD_TARGET): Dockerfile Makefile $(NEVER_DEPS)
 	@echo "*** Building $(DOCKER_TAG_PREFIX)$(DOCKER_TAG_SUFFIX) ***"
 	docker rmi -f $(DOCKER_TAG_PREFIX)$(DOCKER_TAG_SUFFIX)
 	docker build -t $(DOCKER_TAG_PREFIX)$(DOCKER_TAG_SUFFIX) -f Dockerfile .
